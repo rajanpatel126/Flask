@@ -37,3 +37,12 @@ _Path Parameter_
 - The URL can be redirected to another url using 'redirect' package of Flask.
 - Instead of writing the url manually, we can use url_for to automatically find the corresponding redirected URL.
 - We need to use function name of the specific route for the redirection.
+
+**Templates**
+
+- The HTML structure of each and every page is stored in a saperate file called as templates.
+- Default naming convention of the folder is itself, 'templates', otherwise needs to be mention about the folder in the app.
+- Importing all the templates using 'render_template' package.
+
+- Instead of repetating the layout of html pages, the better way would be to save the layout in one file and extend it wherever we need.
+- If we want to display some content specific to the pages, then we can use block to show it. e.g., {%block variable%}... {%endblock variable%}

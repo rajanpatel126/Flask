@@ -1,5 +1,5 @@
 #liberaries
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, render_template
 import time
 
 #main application
@@ -9,12 +9,12 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/home')
 def home_page():
-    return '<h1>This is the first Flask application</h1>'
+    return render_template('home.html', title='Home')
 
 #about route
 @app.route('/about')
 def about_page():
-    return '<h1>This is the about page</h1>'
+    return render_template('about.html', title='About')
 
 #path parameters - dynamic URL
 @app.route('/welcome/<name>')
