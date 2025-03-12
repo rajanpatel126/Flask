@@ -25,3 +25,15 @@ _Path Parameter_
 
 -> For the different endpoints, we can not have the same calling function.
 -> While server is running, any the changes in the file will be saved automatically except the web page needs to be refreshed manually.
+
+**Difference between Path Parameters and Dynamic URL**
+
+- In the context of the web development, to say the Path parameters and dynamic url are the same thing.
+- Path parameters are the variable emebeded in the query, while dynamic url are the url that change according to user input.
+- e.g., "@app.route('/user/<int:user_id>')", here, /user/123 is a dynamic URL, while <int:user_id> is a path parameter.s
+
+**URL Redirection**
+
+- The URL can be redirected to another url using 'redirect' package of Flask.
+- Instead of writing the url manually, we can use url_for to automatically find the corresponding redirected URL.
+- We need to use function name of the specific route for the redirection.
