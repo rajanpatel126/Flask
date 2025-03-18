@@ -46,3 +46,11 @@ _Path Parameter_
 
 - Instead of repetating the layout of html pages, the better way would be to save the layout in one file and extend it wherever we need.
 - If we want to display some content specific to the pages, then we can use block to show it. e.g., {%block variable%}... {%endblock variable%}
+
+_If-else block_
+
+- The if-else block will start with {%if%} and ends with {%endif%}, to add elseif statement in between we can write like {%elif%}.
+
+_For loop_
+
+- The for loop has the similar syntax like if-else block that is, {%for%} and ends with {%endfor%}

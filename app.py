@@ -1,6 +1,7 @@
 #liberaries
 from flask import Flask, redirect, url_for, render_template
 import time
+from employee import employee_data
 
 #main application
 app = Flask(__name__)
@@ -45,6 +46,21 @@ def passed(name):
 @app.route('/fail/<name>')
 def failed(name):
     return f'<h1>Sorry {name.title()}!! You have failed</h1>'
+
+#checking number
+@app.route('/check/<int:num>')
+def check(num):
+    return render_template('check.html', title = 'Check', num=num)
+
+#data retrieval
+@app.route('/employee')
+def employee():
+    return render_template('employee.html', title='Employee', employee_data=employee_data)
+
+#managers retrieval
+@app.route('/managers')
+def managers():
+    return render_template('managers.html', title='Managers', employee_data=employee_data)
 
 #server run
 if __name__ == '__main__':

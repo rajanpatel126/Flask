@@ -1,0 +1,16 @@
+{% extends "layout.html" %} {% block content %}
+
+<div>
+  <h2>Given Input number is: {{num}}</h2>
+  {%if num==0 %}
+  <p>The Given number {{num}} is neither even nor odd</p>
+  {%elif num%2==0%}
+  <p>The Given number {{num}} is Even.</p>
+
+  {%else%}
+  <p>The Given number {{num}} is Odd.</p>
+
+  {%endif%}
+</div>
+
+{% endblock content %}
