@@ -12,7 +12,7 @@ _Two kinds of Parameters_
 1. Path parameters: Use to access the perticular endpoint
 2. Query parameters: Filtering the data of perticular endpoint
 
-**_ Use of Conditional clause to start the server _**
+\***\* Use of Conditional clause to start the server \*\***
 
 - The app.run() command must be in the if **name** == "**main**" statement.
 - Unlike JavaScript where each file is saperate module by default, Python files can be imported inside other file.
@@ -54,3 +54,24 @@ _If-else block_
 _For loop_
 
 - The for loop has the similar syntax like if-else block that is, {%for%} and ends with {%endfor%}
+
+\***\*CSRF (Cross Site Request Forgery) Attack\*\***
+
+**How it works?**
+
+- A type of an attack where attaker tricks the end-user by performing unintended actions over web application specially when web applications are taking input eg., forms
+- An attacker generates an email or a website containing the link containing the request message.
+- When a user clicks on it, they will redirected to the web-application, a request will be invoked. The server will have a request from the user, and server will response to that request which is eiter the leakage of the data or some sort of transaction.
+
+**How to prevent?**
+
+- CSRF token : a long, unpredictable string generated at server side when user sign-in for the 1st time and send it back to user's browser.
+- Whenever making a request to the server, the CSRD token is must.
+- If the token matches with the existing token at server, only then the request will be processed otherwise not.
+- So now the token are at two places: with user and at server. If an attacker wants to attack, unless user has shared the token it will be impossible for attacker to attack because to get it from the server, you still need that token.
+
+\***\*WTForms\*\***
+
+- A python liberary to manage, create, validate and handle webforms for python web development
+- Supports input validation, CSRF security, integrated with flask (flask-wtf)
+- Compliant with 'pythonic' coding style; treat forms as python class, work with forms as objects and attributes and no need to write extensive HTML code
