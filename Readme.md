@@ -75,3 +75,23 @@ _For loop_
 - A python liberary to manage, create, validate and handle webforms for python web development
 - Supports input validation, CSRF security, integrated with flask (flask-wtf)
 - Compliant with 'pythonic' coding style; treat forms as python class, work with forms as objects and attributes and no need to write extensive HTML code
+
+**Login and Sign-up Forms**
+
+- To design the fields of the form, we need variables and invoke the class for the respective field. In which we give the label and the validators. Additionally, for the validators we just import the classes for that.
+- That's why the WTForms are called the 'Pythonic' way of designing the forms.
+
+**How to use those forms in the website?**
+
+- Import all the forms to main app.py file and create a object of that imported class whenever we route to the respective pages.
+- Now, to send these form to out HTML code files is by passing the object as a parameter in the render_template.
+- We still can not use the forms in our website because the WTForms need the CSRF token to be passed before accessing it.
+
+- So,store a SECRET_KEY in app.config[] in app.py and in the html template, the first line of code in the form tag must be '{{form.hidden_tag()}}'
+
+- In the app.route(), we need to pass the methods. Now, because we are going to receive and store the data to the server, we need POST request to be passed. But, firstly we required to have form on the website in order to receive the data. So, the GET request is must.
+- To perform the validation of all the input fields, we ought to put the validation on the submit button to check whether all input fields are fulfilling the requirements.
+- We can use the flash messages to show successfully regiestered user after navigating to some other page.
+- The Flash message appear only once.
+
+**Flask does not have in-built {%comment%} class like Django.**

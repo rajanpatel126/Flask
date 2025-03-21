@@ -1,6 +1,10 @@
 {% extends "layout.html" %} {% block content %}
 
 <h3>Content:</h3>
+<div>
+  <p>Getting Started? <a href="{{url_for('signup_page')}}">Sign-Up</a></p>
+  <p>Already Started? <a href="{{url_for('login_page')}}">Login</a></p>
+</div>
 <ul>
   <li>Home</li>
   <li><a href="{{ url_for('about_page') }}" target="_blank">About</a></li>

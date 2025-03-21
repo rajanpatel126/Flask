@@ -1,10 +1,14 @@
 #liberaries
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask, redirect, url_for, render_template, redirect, flash
 import time
 from employee import employee_data
+from forms import SignupForm, LoginForm
 
 #main application
 app = Flask(__name__)
+
+#csrf token (random value)
+app.config['SECRET_KEY'] = 'this_is_the_sceret_key'
 
 #home route
 @app.route('/')
@@ -61,6 +65,30 @@ def employee():
 @app.route('/managers')
 def managers():
     return render_template('managers.html', title='Managers', employee_data=employee_data)
+
+#sign-up page
+@app.route('/signup', methods=['GET','POST'])
+def signup_page():
+    form = SignupForm()
+    if form.validate_on_submit():
+        flash(f'Account created for {form.username.data}!')
+        return redirect(url_for('home_page'))
+    return render_template('signup.html', title='Sign-up', form=form)
+
+#login page
+@app.route('/login', methods=['GET','POST'])
+def login_page():
+    form = LoginForm()
+    email = form.email.data
+    pw = form.password.data
+    if form.validate_on_submit():
+        # hard coded values
+        if email == "a@b.com" and pw == "12345":
+            flash("Logged in Successfully!")
+            return redirect(url_for("home_page"))
+        else:
+            flash("Incorrect email or password")
+    return render_template('login.html', title='Login', form=form)
 
 #server run
 if __name__ == '__main__':
