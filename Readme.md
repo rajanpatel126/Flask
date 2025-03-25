@@ -95,3 +95,89 @@ _For loop_
 - The Flash message appear only once.
 
 **Flask does not have in-built {%comment%} class like Django.**
+
+**SQLAlchemy: The bridge between python and database servers**
+
+| Concept     | Database | Python          |
+| ----------- | -------- | --------------- |
+| Data        | Table    | Class           |
+| Feature     | Column   | Attribute       |
+| Observation | Row      | Class Instance  |
+| Operation   | Query    | Calling Methods |
+
+- This is how the python understands the concepts of the data, rows, columns and tables.
+- After defining the model in form of class, go to the python shell and run the following command
+
+```
+from app import db
+db.create_all() - Now, this code will give error, because we need to define the application context here.
+
+so, the code will go like:
+
+from app import app, db
+app_context = app.app_context()
+app_context.push()
+db.create_all()
+```
+
+_CREATE Operation: After that, to insert the data in the database ,firstly import the class from the main file._
+
+```
+from app import Employee
+Lucy = Employee(name='Lucy', email='lucy59@xmail.com',age=28)
+
+#after adding all of the data, add those session data and commit the changes to reflect in the database.
+
+db.session.add(Lucy)
+db.session.commit()
+
+# for multiple data, we can pass the list;
+db.session.add([Will, John])
+db.session.commit()
+```
+
+_READ Operation: To retrieve all the data of database to our python shell, we need to pass the query._
+
+```
+#to get all the rows
+employees = Employee.query.all() #the output is a list, can use the loop to print all of them
+
+for emp in employees:
+    print(f"{emp.name} is {emp.age} years old, has email {emp.email}")
+
+#to get the first instance
+Employee.query.first()
+
+#to get the last instance
+Employee.query.last()
+
+#the filter query to find the instance of Will
+Employee.query.filter_by(name='Will') #this query is just filtering the data.
+
+#to show the data on console,
+Employee.query.filter_by(name='Will').all()
+Employee.query.filter_by(name='Will').first()
+
+#extract the data from the ID
+db.session.get(Employee, 2)
+
+```
+
+_UPDATE Operation: just pass the new value to respective attribute and commit those changes, it will update the information in the databse_
+
+```
+#update the age of John
+john = employees[-1]
+john.age = 57
+db.session.commit()
+
+```
+
+_DELETE Operation: the same way as the update operation_
+
+```
+john = employees[-1]
+db.session.delete(john)
+db.session.commit()
+
+```

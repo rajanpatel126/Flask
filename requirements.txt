@@ -4,3 +4,4 @@ pandas
 matplotlib
 flask-wtf
 email-validator
+flask_sqlalchemy

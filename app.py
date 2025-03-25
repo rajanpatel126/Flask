@@ -3,9 +3,27 @@ from flask import Flask, redirect, url_for, render_template, redirect, flash
 import time
 from employee import employee_data
 from forms import SignupForm, LoginForm
+from flask_sqlalchemy import SQLAlchemy
+
 
 #main application
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///employees_db.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+#database object
+db = SQLAlchemy(app)
+
+#tables are represented as classes
+class Employee(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False, unique=True)
+    age = db.Column(db.Integer, nullable=False)
+    
+    #to display the output we wanted
+    def __repr__(self):
+        return f'Employee(name={self.name}, email={self.email}, age={self.age}))'
 
 #csrf token (random value)
 app.config['SECRET_KEY'] = 'this_is_the_sceret_key'
