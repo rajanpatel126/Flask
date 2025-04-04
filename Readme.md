@@ -181,3 +181,40 @@ db.session.delete(john)
 db.session.commit()
 
 ```
+
+_One to Many Operation_
+
+- With the 'backref' passing in the main table, we don't need the id to specify entry in the either table. we can just pass the object name as an id to pass it rather than finding an id and putting it there.
+
+**We can add all the objects together without passing which is which. The SQLAlchemy will identify it's table and push the data in it while commitng the changes.**
+
+- If we want to find the player playing for CSK, then we can do like;
+
+```
+csk_team = Team.query.first()
+csk_team.members
+```
+
+- If we know the player name and we wanted to find which team he's playing for;
+
+```
+msd_player = Player.query.first()
+msd_player.team #the members refrence work both ways.
+```
+
+_Many to Many Relationship: need an associate table additioanlly_
+
+- the Alchemy doesn't know that this associate table is connected with the two primaraly table. So, for that we need to pass backref in one of the table along with an additional argument; secondary='table_name'.
+- While adding the data, we can add the data normally by passing the value to all the attributes without caring about the refrences to associate table.
+
+- Now, the items part, the steve.items is a list; SQLAlchemy list. So, in order to add the products in it, we just need to append or extend(if more than 1) the list.
+
+```
+steve.items
+type(steve.items)
+cup.owners
+type(cup.owners)
+
+steve.items.append(cup) #steve buys the cup
+knife.owners.extend([carl, john]) #knife has been bought by carl and john
+```
