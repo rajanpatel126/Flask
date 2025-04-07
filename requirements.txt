@@ -5,3 +5,4 @@ matplotlib
 flask-wtf
 email-validator
 flask_sqlalchemy
+Flask-Session

@@ -218,3 +218,22 @@ type(cup.owners)
 steve.items.append(cup) #steve buys the cup
 knife.owners.extend([carl, john]) #knife has been bought by carl and john
 ```
+
+**Sessions**
+
+- 2 Types:
+  _Client Side Session (Default)_: Sending the session id and data to the client
+  _Server Side Session_: Sending only session id to the client. We need a library to access the session.
+
+- 2 Types (Based on Duration):
+  _Persistance Session_: Remain active for a long time.
+  _Non Persistance Session_: Short time activation
+
+- 2 Types (Based on Security):
+
+_Authenticated Session_: Session will begin only after authentication
+_Anonymous Session_: Session will created even if user isn't authenticated. e.g., online retail stores
+
+- In the client side, the passing session id will have CSRF token and client name within it.
+- While working with server side, using the liberary Flask-Session, we need to pass the configuration key of the session type. And our appliation name as a session name. like, Session(app). That's it.
+- No CSRF token will be passed to the client side.
